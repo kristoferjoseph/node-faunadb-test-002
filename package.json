@@ -1,0 +1,53 @@
+{
+  "name": "node-faunadb",
+  "version": "1.0.0",
+  "description": "Basic CRUD app with faunadb",
+  "main": "index.js",
+  "arc": {
+    "app": "faunadb-crud-app",
+    "http": [
+      {
+        "/todos": {
+          "method": "post",
+          "src": "/todos/create"
+        }
+      },
+      {
+        "/todos": {
+          "method": "get",
+          "src": "/todos/read"
+        }
+      },
+      {
+        "/todos/delete": {
+          "method": "post",
+          "src": "/todos/delete"
+        }
+      },
+      {
+        "/todos/:id": {
+          "method": "post",
+          "src": "/todos/update"
+        }
+      }
+    ],
+    "tables": [
+      {
+        "data": {
+          "scopeID": "*String",
+          "dataID": "**String",
+          "ttl": "TTL"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "init": "./scripts/init",
+    "start": "arc sandbox"
+  },
+  "dependencies": {
+    "@architect/functions": "^3.13.11",
+    "@architect/sandbox": "^3.4.3",
+    "faunadb": "^4.2.0"
+  }
+}
